@@ -69,7 +69,7 @@ Route::group(['prefix' => 'Mygroup'],function(){
 	});
 });
 
-// php artisan make:controller namecontroller 
+// php artisan make:controller namecontroller
 // Call 1 controller, bên vế thứ 2 là name controller vs name function.
 Route::get('testfirstcontroller','MyController@TestMyFunction');
 
@@ -107,7 +107,7 @@ Route::get('truyenparam/{param}','MyController@TestFunction9');
 
 /*View::share('title_allview','Học lập trình laravel');*/ // chỉ cần echo cái biến $title_allview thì
 // ở trang view nào thì sẽ lấy đc giá trị của nó.
-// 
+//
 // nếu chỉ muốn share biến cho 1 vài trang cần truyền thì làm như sau
 /*View::composer('b22',function($view){
   return $view->with('bien1',"Đây là biến 1");
@@ -153,20 +153,20 @@ Route::get('createtable1',function(){
 
 //+ Tạo bảng khóa phụ liên kết với khóa chính của bảng sản phẩm
 //- mặc định số lượng ban đầu  = 0
-//- cho nó phải giống như khóa chính của bảng SanPham $table->integer('idsanpham')->unsigned(); 
+//- cho nó phải giống như khóa chính của bảng SanPham $table->integer('idsanpham')->unsigned();
 //- khóa phụ idsanpham liên kết tới khóa chính của bảng SanPham $table->integer('idsanpham')->references->('id')->on('SanPham');
 
 /*$table->unique(['user_id','role_id']);
 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')*/;
+$table->foreign('role_id')->references('id')->on('roles')->onDelete('SET NULL')*/;
 Route::get('createtable2',function(){
 	Schema::create('Sanpham2',function($table){
 		$table->increments('id');
 		$table->string('namesanpham2',200);
 		$table->float('gia');
-		$table->integer('soluong')->default(0);  
-		$table->integer('idsanpham')->unsigned(); 
-		$table->foreign('idsanpham')->references('id')->on('SanPham'); 
+		$table->integer('soluong')->default(0);
+		$table->integer('idsanpham')->unsigned();
+		$table->foreign('idsanpham')->references('id')->on('SanPham');
 	});
 	echo "Tạo bảng thành công";
 });
@@ -213,7 +213,7 @@ Route::get('query/sanphammigrate',function(){
 	echo "<pre>";
 	print_r($data);
 	echo "</pre>";
-}); 
+});
 
 Route::get('getsanphamid',function(){
 	$data = DB::table('sanphammigrate')->where('id',1)->get();
@@ -238,7 +238,7 @@ Route::get('getsanphambetween',function(){
 });
 
 Route::get('getsanphamlimit',function(){
-	$data = DB::table('sanphammigrate')->skip(0)->take(2)->get(); 
+	$data = DB::table('sanphammigrate')->skip(0)->take(2)->get();
 	/*(0,2)*/
 	echo "<pre>";
 	print_r($data);
@@ -427,8 +427,8 @@ Route::get('model/modelCar',function(){
         (
             [id] => 1
             [namecolor] => red
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [pivot] => Array
                 (
                     [car_id] => 1
@@ -441,8 +441,8 @@ Route::get('model/modelCar',function(){
         (
             [id] => 2
             [namecolor] => black
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [pivot] => Array
                 (
                     [car_id] => 1
@@ -466,8 +466,8 @@ Route::get('model/modelColortestjoin',function(){
         (
             [id] => 1
             [name] => car1
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [car_id] => 1
             [color_id] => 1
             [price] => 300
@@ -477,8 +477,8 @@ Route::get('model/modelColortestjoin',function(){
         (
             [id] => 3
             [name] => car3
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [car_id] => 3
             [color_id] => 1
             [price] => 100
@@ -488,8 +488,8 @@ Route::get('model/modelColortestjoin',function(){
         (
             [id] => 2
             [name] => car2
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [car_id] => 2
             [color_id] => 1
             [price] => 200
@@ -512,8 +512,8 @@ Route::get('model/modelColor',function(){
             [id] => 1
             [name] => car1
             [price] => 300
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [pivot] => Array
                 (
                     [color_id] => 1
@@ -527,8 +527,8 @@ Route::get('model/modelColor',function(){
             [id] => 3
             [name] => car3
             [price] => 100
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [pivot] => Array
                 (
                     [color_id] => 1
@@ -542,8 +542,8 @@ Route::get('model/modelColor',function(){
             [id] => 2
             [name] => car2
             [price] => 200
-            [created_at] => 
-            [updated_at] => 
+            [created_at] =>
+            [updated_at] =>
             [pivot] => Array
                 (
                     [color_id] => 1
@@ -779,9 +779,9 @@ echo $posts[0]->pending_comments_count;
 
 /*class Book extends Model
 {
-    
+
     Lấy thông tin tác giả, người viết cuốn sách này
-     
+
     public function author()
     {
         return $this->belongsTo('App\Author');
@@ -828,7 +828,7 @@ select * from authors where id in (1, 2, 3, 4, 5, ...)*/
 // con tới cha
 Route::get('model/modelwithEager',function(){
 	$data = App\ModelLoaitin::with('LoaiTinHasOneTheLoai')->get();
-	
+
 	foreach ($data as $value) {
 	 	echo "<pre>";
 		print_r($value->LoaiTinHasOneTheLoai->ten);
@@ -839,7 +839,7 @@ Route::get('model/modelwithEager',function(){
 // cha tới con
 Route::get('model/modelwithEager1',function(){
 	$data = App\ModelTheloai::with('theloaihasManyLoaitin')->get();
-	
+
 	foreach ($data as $value) {
 	 	foreach ($value->theloaihasManyLoaitin as $val) {
  			 	echo "<pre>";
@@ -852,7 +852,7 @@ Route::get('model/modelwithEager1',function(){
 
 Route::get('model/modelloadEager',function(){
 	$data = App\ModelLoaitin::all()->load('LoaiTinHasOneTheLoai');
-	
+
 	foreach ($data as $value) {
 	 	echo "<pre>";
 		print_r($value->LoaiTinHasOneTheLoai);
@@ -864,7 +864,7 @@ Route::get('model/modelloadEager',function(){
 // *** 1 vài truy vấn hay : https://viblo.asia/p/mot-so-truy-van-huu-ich-trong-laravel-3P0lPA185ox
 // có cả condition, where...
 
-// *** tối ưu hóa orm để giảm mức tiêu thụ bộ nhớ 
+// *** tối ưu hóa orm để giảm mức tiêu thụ bộ nhớ
 // https://viblo.asia/p/toi-uu-hoa-cac-truy-van-eloquent-de-giam-muc-tieu-thu-bo-nho-4P856Pr1ZY3
 
 /*$post = Post::findOrFail($id, ['id', 'title', 'content']);
@@ -1087,7 +1087,7 @@ DB::table("resti") ví dụ ở mạng
 ->select(DB::raw("COUNT(cntr) count, address, description"))
 ->groupBy("cntr")
 ->havingRaw("COUNT(cntr) > 1")
-->get();                
+->get();
 */
 
 /*
